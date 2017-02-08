@@ -2,26 +2,33 @@
 import os
 import io
 import difflib
-
+import re
 #wordarray = []
 #chatarray = []
 #text1 = "Test:"
 
-with open('words.txt') as fp:
-    for line in fp:
-        content = fp.readlines()
-        content = [x.strip () for x in content]
-        with open ('chat.txt') as fd:
-            for line in fd:
-                content1 = fd.readlines()
-                content1 = [x.strip() for x in content1]
-diffInstance = difflib.Differ()
-diffList = list(diffInstance.compare(content1, content))
 
-print ("Lines different in text1 from text2:")
-for line in diffList:
-  if line[0] == '-':
-    print (line)
+wordlist = input("What is your word list called?")
+f = open(wordlist)
+t = f.readlines()
+l = ''.join(t).lower()
+chatlog = input("What is your chat log called?")
+with open(chatlog) as f:
+    found = False
+    for line in f:
+        line = line.lower()
+        if l in line:
+            print(line)
+            found = True
+    if not found:
+        print("not here")
+
+
+
+    #    if not found:
+        #    print("not here")
+
+
 #wordlist = input("What is your word list file called?")
 #with open(wordlist, 'r') as w:
 #       wordlines = wordlist.readlines()
