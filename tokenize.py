@@ -7,30 +7,21 @@ import difflib
 #chatarray = []
 #text1 = "Test:"
 
-wordlist = input("What is your word list file called?")
-chatlog = input("What is your chat log called?")
+with open('words.txt') as fp:
+    for line in fp:
+        content = fp.readlines()
+        content = [x.strip () for x in content]
+        with open ('chat.txt') as fd:
+            for line in fd:
+                content1 = fd.readlines()
+                content1 = [x.strip() for x in content1]
+diffInstance = difflib.Differ()
+diffList = list(diffInstance.compare(content1, content))
 
-f1 = open(wordlist)
-f2 = open(chatlog)
-
-f1_line = f1.readline()
-f2_line = f2.readline()
-
-line_no = 1
-
-        # If a line does not exist on file2 then mark the output with + sign
-if f2_line == '' and f1_line != '':
-        print(">+", "Line-%d" % line_no, f1_line)
-        # otherwise output the line on file1 and mark it with > sign
-elif f1_line != '':
-        print(">", "Line-%d" % line_no, f1_line)
-
-        # If a line does not exist on file1 then mark the output with + sign
-if f1_line == '' and f2_line != '':
-        print("<+", "Line-%d" % line_no, f2_line)
-        # otherwise output the line on file2 and mark it with < sign
-elif f2_line != '':
-        print("<", "Line-%d" %  line_no, f2_line)
+print ("Lines different in text1 from text2:")
+for line in diffList:
+  if line[0] == '-':
+    print (line)
 #wordlist = input("What is your word list file called?")
 #with open(wordlist, 'r') as w:
 #       wordlines = wordlist.readlines()
