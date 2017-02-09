@@ -10,14 +10,13 @@ import re
 
 wordlist = input("What is your word list called?")
 f = open(wordlist)
-t = f.readlines()
-l = ''.join(t).lower()
+l = set(w.strip().lower() for w in f)
 chatlog = input("What is your chat log called?")
 with open(chatlog) as f:
     found = False
     for line in f:
         line = line.lower()
-        if l in line:
+        if any(w in line for w in l):
             print(line)
             found = True
     if not found:
