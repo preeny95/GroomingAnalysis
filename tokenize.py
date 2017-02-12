@@ -1,7 +1,6 @@
 #import nltk
 import os
 import io
-import difflib
 import re
 #wordarray = []
 #chatarray = []
@@ -17,6 +16,7 @@ with open(chatlog) as f:
     for line in f:
         line = line.lower()
         if any(w in line for w in l):
+            print (l)
             print(line)
             found = True
     if not found:
