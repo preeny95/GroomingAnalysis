@@ -1,4 +1,4 @@
-import nltk
+#import nltk
 import os
 import io
 
